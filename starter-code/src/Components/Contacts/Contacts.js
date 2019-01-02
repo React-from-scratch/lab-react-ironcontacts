@@ -9,6 +9,7 @@ const Contacts = (props) => {
       popularity={e.popularity}
       key={index}
       changed={() => props.changed()}
+      sort={() => props.sorted()}
     />
   })
 }
