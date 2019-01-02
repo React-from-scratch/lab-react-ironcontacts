@@ -1,21 +1,24 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+import contacts from './contacts.json'
+import Contacts from './Components/Contacts/Contacts'
 
 class App extends Component {
-  render() {
+
+  state = {
+    contacts: contacts.slice(0,5)
+  }
+
+  render () {
+    console.log(this.state.contacts)
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className='App'>
+      <h1>Celebrity Contacts</h1>
+        <Contacts contacts={this.state.contacts} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
