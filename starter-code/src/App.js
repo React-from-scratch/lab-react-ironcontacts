@@ -11,8 +11,14 @@ class App extends Component {
 
   addNewContact = () => {
     const allContacts = [...this.state.contacts]
-    const newContacts = allContacts.concat(contacts[Math.floor(Math.random() * 190) + 1])
-    this.setState( { contacts: newContacts })
+    let newContact = contacts[Math.floor(Math.random() * 190) + 1]
+    allContacts.forEach( e => {
+      if(newContact.name === e.name) {
+        newContact = contacts[Math.floor(Math.random() * 190) + 1]
+      }
+    })
+    const contactList = allContacts.concat(newContact)
+    this.setState( { contacts: contactList })
   }
 
   sortByName = () => {
@@ -29,29 +35,32 @@ class App extends Component {
     const contacts = [...this.state.contacts]
     contacts.splice(contactIndex, 1)
     this.setState({contacts: contacts})
-    console.log(contacts)
   }
 
   render () {
     return (
       <div className='App'>
-        <h1>Celebrity Contacts</h1>
+        <div className='header'>
+          <h1>Celebrity Contacts</h1>
+        </div>
         <button onClick={this.addNewContact}>Add a random Contact</button>
         <button onClick={this.sortByName}>Sort by name</button>
         <button onClick={this.sortByPopularity}>Sort by popularity</button>
         <table>
-          <tr>
-            <th>Picture</th>
-            <th>Name</th>
-            <th>Popularity</th>
-            <th>Action</th>
-          </tr>
-          <Contacts 
-            contacts={this.state.contacts} 
-            changed={this.addNewContact} 
-            sort={this.sortByName}
-            sortbypop={this.sortByPopularity} 
-            remove={this.deleteContact}/>
+          <tbody>
+            <tr>
+              <th>Picture</th>
+              <th>Name</th>
+              <th>Popularity</th>
+              <th>Action</th>
+            </tr>
+            <Contacts 
+              contacts={this.state.contacts} 
+              changed={this.addNewContact} 
+              sort={this.sortByName}
+              sortbypop={this.sortByPopularity} 
+              remove={this.deleteContact}/>
+          </tbody>
         </table>
       </div>
     )

@@ -4,7 +4,7 @@ const contact = (props) => {
   return (
     <Fragment>
       <tr>
-        <td><img width='40px' src={props.picture} /></td>
+        <td><img width='30px' src={props.picture} alt='Artist avatar' /></td>
         <td>{props.name}</td>
         <td>{props.popularity}</td>
         <td>
