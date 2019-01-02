@@ -9,8 +9,9 @@ const Contacts = (props) => {
       popularity={e.popularity}
       key={index}
       changed={() => props.changed()}
-      sort={() => props.sorted()}
-      sortedbypop={() => this.sortByPopularity()}
+      sort={() => props.sort()}
+      sortbypop={() => props.sortbypop()}
+      remove={() => props.remove(index)}
     />
   })
 }

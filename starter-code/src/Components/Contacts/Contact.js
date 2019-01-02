@@ -7,6 +7,9 @@ const contact = (props) => {
         <td><img width='40px' src={props.picture} /></td>
         <td>{props.name}</td>
         <td>{props.popularity}</td>
+        <td>
+          <button onClick={props.remove}>Remove</button>
+        </td>
       </tr>
     </Fragment>
   )

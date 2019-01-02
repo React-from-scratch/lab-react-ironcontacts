@@ -25,6 +25,13 @@ class App extends Component {
     this.setState( { contacts: contact })
   }
 
+  deleteContact = (contactIndex) => {
+    const contacts = [...this.state.contacts]
+    contacts.splice(contactIndex, 1)
+    this.setState({contacts: contacts})
+    console.log(contacts)
+  }
+
   render () {
     return (
       <div className='App'>
@@ -37,12 +44,14 @@ class App extends Component {
             <th>Picture</th>
             <th>Name</th>
             <th>Popularity</th>
+            <th>Action</th>
           </tr>
           <Contacts 
             contacts={this.state.contacts} 
             changed={this.addNewContact} 
-            sorted={this.sortByName}
-            sortedbypop={this.sortByPopularity} />
+            sort={this.sortByName}
+            sortbypop={this.sortByPopularity} 
+            remove={this.deleteContact}/>
         </table>
       </div>
     )
