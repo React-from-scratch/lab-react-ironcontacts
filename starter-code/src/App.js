@@ -20,12 +20,18 @@ class App extends Component {
     this.setState( { contacts: contact })
   }
 
+  sortByPopularity = () => {
+    const contact = [...this.state.contacts].sort((a, b) => (a.popularity < b.popularity) ? 1 : (a.popularity > b.popularity) ? -1 : 0 )
+    this.setState( { contacts: contact })
+  }
+
   render () {
     return (
       <div className='App'>
         <h1>Celebrity Contacts</h1>
         <button onClick={this.addNewContact}>Add a random Contact</button>
         <button onClick={this.sortByName}>Sort by name</button>
+        <button onClick={this.sortByPopularity}>Sort by popularity</button>
         <table>
           <tr>
             <th>Picture</th>
@@ -35,7 +41,8 @@ class App extends Component {
           <Contacts 
             contacts={this.state.contacts} 
             changed={this.addNewContact} 
-            sorted={this.sortByName} />
+            sorted={this.sortByName}
+            sortedbypop={this.sortByPopularity} />
         </table>
       </div>
     )
