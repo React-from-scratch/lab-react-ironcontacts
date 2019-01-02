@@ -9,13 +9,27 @@ class App extends Component {
     contacts: contacts.slice(0,5)
   }
 
-  render () {
-    console.log(this.state.contacts)
+  addNewContact = () => {
+    const allContacts = [...this.state.contacts]
+    const newContacts = allContacts.concat(contacts[Math.floor(Math.random() * 190) + 1])
+    this.setState( { contacts: newContacts })
+  }
 
+  render () {
     return (
       <div className='App'>
-      <h1>Celebrity Contacts</h1>
-        <Contacts contacts={this.state.contacts} />
+        <h1>Celebrity Contacts</h1>
+        <button onClick={this.addNewContact}>Add a random Contact</button>
+        <table>
+          <tr>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Popularity</th>
+          </tr>
+          <Contacts 
+            contacts={this.state.contacts} 
+            changed={this.addNewContact}/>
+        </table>
       </div>
     )
   }
